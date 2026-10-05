@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "337724083420",
+    "firebase_url": "https://ai-call-translator-ddfa5-default-rtdb.firebaseio.com",
+    "project_id": "ai-call-translator-ddfa5",
+    "storage_bucket": "ai-call-translator-ddfa5.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:337724083420:android:8e86d57a24157fcc09b819",
+        "android_client_info": {
+          "package_name": "com.example.calltranslator"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAES9gfBg3hIec6wXVwifE3axDqzKTL7GI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

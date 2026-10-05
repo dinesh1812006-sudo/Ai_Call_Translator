@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Outermost Soundwave Ring -->
+    <path
+        android:pathData="M54,15C32.5,15 15,32.5 15,54C15,75.5 32.5,93 54,93C75.5,93 93,75.5 93,54"
+        android:strokeWidth="5"
+        android:strokeLineCap="round">
+        <aapt:attr name="android:strokeColor">
+            <gradient
+                android:startX="15"
+                android:startY="54"
+                android:endX="93"
+                android:endY="54"
+                android:type="linear">
+                <item android:offset="0" android:color="#FF80AB"/> <!-- Soft Pink -->
+                <item android:offset="1" android:color="#9575CD"/> <!-- Soft Purple -->
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Center Phone Icon -->
+    <path
+        android:pathData="M40,38c-1.1,0 -2,0.9 -2,2v5c0,11 9,20 20,20h5c1.1,0 2,-0.9 2,-2v-10c0,-1.1 -0.9,-2 -2,-2h-6c-0.6,0 -1.1,0.2 -1.5,0.7l-3,3c-6,-3 -10,-7 -13,-13l3,-3c0.5,-0.4 0.7,-1 0.7,-1.5v-6c0,-1.1 -0.9,-2 -2,-2H40z"
+        android:fillColor="#444444"/>
+
+    <!-- Translation Badge -->
+    <path
+        android:pathData="M68,32h14v14h-14z"
+        android:fillColor="#FF80AB"/>
+    <path
+        android:pathData="M71,43h2l0.5,-2h2l0.5,2h2l-3,-8h-2l-3,8z M74,40l1,-3l1,3h-2z"
+        android:fillColor="#FFFFFF"/>
+
+</vector>

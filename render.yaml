@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: ai-call-translator-backend
+    runtime: python
+    rootDir: translator_backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: BACKEND_SECRET
+        # Must match the Android app's X-App-Secret header
+        # (ApiService.kt default). Change both sides together.
+        value: change-me-in-production
+      - key: PYTHON_VERSION
+        value: 3.11.9
