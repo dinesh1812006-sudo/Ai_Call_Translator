@@ -10,8 +10,6 @@ services:
       - key: GEMINI_API_KEY
         sync: false
       - key: BACKEND_SECRET
-        # Must match the Android app's X-App-Secret header
-        # (ApiService.kt default). Change both sides together.
-        value: change-me-in-production
+        sync: false
       - key: PYTHON_VERSION
         value: 3.11.9

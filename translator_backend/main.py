@@ -10,7 +10,11 @@ from dotenv import load_dotenv
 load_dotenv()
 
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-BACKEND_SECRET = os.getenv("BACKEND_SECRET", "change-me-in-production")
+BACKEND_SECRET = os.getenv("BACKEND_SECRET")
+
+if not BACKEND_SECRET:
+    print("BACKEND CONFIG ERROR: BACKEND_SECRET is not set. Set it in .env (local) or Render env vars.")
+    raise ValueError("BACKEND_SECRET not found in environment variables")
 
 
 def get_gemini_model(model_name: str):
@@ -39,8 +43,6 @@ app.add_middleware(
 
 class TranslationRequest(BaseModel):
     text: str = Field(..., min_length=1, max_length=2000)
-    # Accept both the app's field names (source_lang/target_lang) and the
-    # spec's example names (source_language/target_language).
     source_lang: Optional[str] = Field(default=None, min_length=2, max_length=20)
     target_lang: Optional[str] = Field(default=None, min_length=2, max_length=20)
     source_language: Optional[str] = Field(default=None, min_length=2, max_length=20)
@@ -79,8 +81,6 @@ async def translate(
     if request.model and "gpt" in request.model.lower():
         return {"translated_text": f"[GPT-4o Mock] {request.text}"}
 
-    # Rolling aliases: versioned models (1.5/2.5) are retired or blocked for
-    # new API keys, so track the latest available Flash/Pro models.
     model_name = 'gemini-pro-latest' if request.model and 'pro' in request.model.lower() else 'gemini-flash-latest'
     current_model = get_gemini_model(model_name)
 
@@ -116,13 +116,10 @@ async def translate(
     except HTTPException:
         raise
     except Exception as e:
-        # Invalid/revoked key: report a clear config error. Match on the error
-        # reason only; never print or return exception text, keys, or prompts.
         err_text = str(e)
         if "API_KEY_INVALID" in err_text or "API key not valid" in err_text:
             print("GEMINI CONFIG ERROR: Google rejected GEMINI_API_KEY. Set a valid key in .env (local) or Render env vars.")
             return {"translated_text": "", "error": "Translation service configuration error"}
-        # Log type only: never leak keys, prompts, or user text to logs.
         print(f"Backend Error: {type(e).__name__}")
         return {"translated_text": "", "error": "Translation service error"}
 
